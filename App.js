@@ -1,9 +1,11 @@
 import React from "react";
-import { View, Button, Text, ActivityIndicator, StatusBar } from "react-native";
-import User from "./Components/User";
-import Repo from "./Components/Repo";
-import * as Font from "expo-font";
+import { View, ActivityIndicator, StatusBar } from "react-native";
+import User from "./screens/User";
+import Repo from "./screens/Repo";
+import Label from "./components/Label";
+import ButtonInput from "./components/Button";
 import styles from "./Style";
+import * as Font from "expo-font";
 
 export default class App extends React.Component {
   constructor() {
@@ -72,7 +74,8 @@ export default class App extends React.Component {
   backUser = () => {
     this.setState({
       isAddModalUser: true,
-      isAddModalRepo: false
+      isAddModalRepo: false,
+      repo: "repo"
     });
   };
 
@@ -82,21 +85,22 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Set the repository address</Text>
+            <Label style={styles.title} label="Set the repository address" />
           </View>
-          <Text style={styles.text}>{this.state.github}</Text>
-          <Text style={styles.textState}>{this.state.user}</Text>
+          <Label label={this.state.github} />
+          <Label style={styles.textState} label={this.state.user} />
           <User
             visible={this.state.isAddModalUser}
             user={this.changeTextUser}
             check={this.goRepo}
             back={() =>
               this.setState({
-                isAddModalUser: false
+                isAddModalUser: false,
+                user: "user"
               })
             }
           />
-          <Text style={styles.textState}>{this.state.repo}</Text>
+          <Label style={styles.textState} label={this.state.repo} />
           <Repo
             visible={this.state.isAddModalRepo}
             repo={this.changeTextRepo}
@@ -108,26 +112,23 @@ export default class App extends React.Component {
             back={this.backUser}
           />
           <View style={styles.check}>
-            <View style={{ marginBottom: 10 }}>
-              <Button
-                title="SEND"
-                onPress={() => {
-                  this.submit();
-                }}
-              />
-            </View>
-            <View>
-              <Button
-                color="black"
-                title="CHECK"
-                onPress={() =>
-                  this.setState({
-                    isAddModalUser: true
-                  })
-                }
-              />
-            </View>
+            <ButtonInput
+              color="blue"
+              title="SEND"
+              onPress={() => {
+                this.submit();
+              }}
+            />
           </View>
+          <ButtonInput
+            color="black"
+            title="CHECK"
+            onPress={() =>
+              this.setState({
+                isAddModalUser: true
+              })
+            }
+          />
         </View>
       );
     } else {

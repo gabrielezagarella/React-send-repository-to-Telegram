@@ -5,27 +5,24 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center"
-  },
-  check: {
-    position: "absolute",
-    bottom: 40,
-    right: 20
+    justifyContent: "center",
+    marginStart: 30,
+    marginEnd: 30
   },
   titleContainer: {
     position: "absolute",
     top: 120
   },
   title: {
-    fontSize: 20,
-    fontFamily: "OpenSans_SemiBold"
-  },
-  text: {
-    fontFamily: "OpenSans_SemiBold"
+    fontSize: 20
   },
   textState: {
-    color: "grey",
-    fontFamily: "OpenSans_SemiBold"
+    color: "grey"
+  },
+  check: {
+    position: "absolute",
+    bottom: 40,
+    right: 0
   }
 });
 
